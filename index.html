@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>71 Consulting – Finance transformation that holds under pressure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 300;
+            line-height: 1.7;
+            color: #111827;
+            background: #ffffff;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(3, 48, 66, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        nav.scrolled {
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: #e0f2f1;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            letter-spacing: 0.02em;
+        }
+        
+        .nav-links a:hover {
+            color: #ffffff;
+        }
+        
+        /* Full-page sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        /* Hero with Video */
+        .hero {
+            background: #033042;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(3, 48, 66, 0.75) 0%, rgba(2, 35, 48, 0.65) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero-subline {
+            font-size: 1.5rem;
+            color: #e0f2f1;
+            max-width: 800px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #ffffff;
+            color: #033042;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background: #e0f2f1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .microline {
+            font-size: 0.95rem;
+            color: #b2dfdb;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+        
+        /* Services Section - Dark Teal */
+        .services {
+            background: #033042;
+            color: white;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-header p {
+            font-size: 1.25rem;
+            color: #b2dfdb;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 8px;
+            border-left: 4px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-left-color: #ffffff;
+            transform: translateX(10px);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        
+        .service-card p {
+            color: #e0f2f1;
+            line-height: 1.8;
+        }
+        
+        /* Client Asks Section - White */
+        .client-asks {
+            background: #ffffff;
+        }
+        
+        .client-asks h2 {
+            color: #033042;
+        }
+        
+        .asks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .ask-card {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 3px solid #033042;
+        }
+        
+        .ask-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #033042;
+            margin-bottom: 1rem;
+        }
+        
+        .ask-card p {
+            color: #4b5563;
+            font-size: 0.95rem;
+        }
+        
+        /* Stories Section - Content Hub */
+        .stories {
+            background: #033042;
+            color: white;
+            min-height: 100vh;
+            padding: 6rem 0;
+        }
+        
+        .stories-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .stories-header h2 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        
+        .stories-header p {
+            font-size: 1.25rem;
+            color: #b2dfdb;
+        }
+        
+        .stories-filter {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .story-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .story-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .story-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0a3d47 0%, #033042 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+        
+        .story-content {
+            padding: 1.5rem;
+        }
+        
+        .story-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+            color: #b2dfdb;
+        }
+        
+        .story-tag {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+        }
+        
+        .story-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+        
+        .story-card p {
+            color: #e0f2f1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Who We Are Section - White */
+        .who-we-are {
+            background: #ffffff;
+        }
+        
+        .who-we-are h2 {
+            color: #033042;
+        }
+        
+        .who-content {
+            margin-top: 3rem;
+            position: relative;
+        }
+        
+        .ralph-photo {
+            width: 450px;
+            height: auto;
+            float: left;
+            margin: 0 3rem 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(3, 48, 66, 0.15);
+        }
+        
+        .who-text h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #033042;
+            margin-bottom: 1rem;
+        }
+        
+        .who-text p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+        
+        .who-highlights {
+            background: #f8fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #033042;
+            margin-top: 3rem;
+            clear: both;
+        }
+        
+        .who-highlights h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #033042;
+            margin-bottom: 1rem;
+        }
+        
+        .who-highlights ul {
+            list-style: none;
+            color: #4b5563;
+        }
+        
+        .who-highlights li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .who-highlights li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #033042;
+        }
+        
+        /* Footer */
+        footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 3rem 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ralph-photo {
+                width: 100%;
+                float: none;
+                margin: 0 0 2rem 0;
+            }
+            
+            .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .asks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">71 Consulting</a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#client-asks">Client Asks</a></li>
+                <li><a href="#stories">Stories</a></li>
+                <li><a href="#who-we-are">Who We Are</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Video -->
+    <section id="home" class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="volvo-ocean-race-loop.mp4" type="video/mp4">
+            <source src="volvo-ocean-race-loop.webm" type="video/webm">
+        </video>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Finance transformation<br>that holds under pressure.</h1>
+                <p class="hero-subline">
+                    We work with CFOs and transformation leaders who need to make complex programs land – 
+                    across vendors, systems, and teams that don't always speak the same language.
+                </p>
+                <div class="cta-group">
+                    <a href="#contact" class="btn btn-primary">Start a conversation</a>
+                    <a href="#stories" class="btn btn-secondary">Explore Stories</a>
+                </div>
+                <p class="microline">Elite crews. Complex systems. Speed under pressure.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section - Full Dark Teal -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>What we actually do.</h2>
+                <p>71 Consulting helps large organizations run finance and technology transformations that hold under pressure.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Transform Finance Operations</h3>
+                    <p>Make large finance transformations executable across systems, vendors, and cultures. SAP S/4HANA migrations, GBS buildouts, and platform consolidations that survive contact with reality.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Align Multi-Vendor Programs</h3>
+                    <p>Coordinate multiple vendors around one rhythm when everyone protects their own margin. Turn vendor friction into delivery traction through clear governance and aligned incentives.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Rebuild Operating Models</h3>
+                    <p>Design finance and GBS operating models that actually work in practice, not just in slides. Shared services, outsourcing, and hybrid models built for European complexity.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Navigate Technology Shifts</h3>
+                    <p>Help CFOs read the signal in AI, data, and platform shifts – without the hype or the theatre. Cut through vendor noise to find real leverage and sustainable advantage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Asks Section - White -->
+    <section id="client-asks" class="client-asks">
+        <div class="container">
+            <div class="section-header">
+                <h2>What clients are asking.</h2>
+                <p>The questions CFOs and transformation leaders bring to us</p>
+            </div>
+            
+            <div class="asks-grid">
+                <div class="ask-card">
+                    <h3>SAP S/4HANA Deadline</h3>
+                    <p>"We're 18 months from the 2027 cutoff and haven't started. How do we navigate brownfield vs. greenfield when our ECC system is a patchwork?"</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Multi-Vendor Chaos</h3>
+                    <p>"Three SIs, two BPOs, and internal IT all have different delivery rhythms. How do we create one program cadence when everyone's incentives are misaligned?"</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>AI Governance Reality</h3>
+                    <p>"The board wants an 'AI strategy' but we're still struggling with data quality. What's actually implementable in finance without creating more risk?"</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>GBS Transformation Stall</h3>
+                    <p>"Our shared services center costs more than the decentralized model did. How do we fix the operating model without admitting failure to the board?"</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Outsourcing Re-evaluation</h3>
+                    <p>"Our BPO contract is up for renewal and performance is mediocre. Do we re-compete, bring it in-house, or fix the current relationship?"</p>
+                </div>
+                
+                <div class="ask-card">
+                    <h3>Platform Economics</h3>
+                    <p>"We're on Oracle, SAP, and Workday. The TCO is spiraling. What's the real cost of platform consolidation vs. living with complexity?"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section - Content Hub (Dark Teal) -->
+    <section id="stories" class="stories">
+        <div class="container">
+            <div class="stories-header">
+                <h2>Stories from the field.</h2>
+                <p>Signals, cases, and insights from 27 years of transformation work</p>
+            </div>
+            
+            <div class="stories-filter">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Signal Analysis</button>
+                <button class="filter-btn">Case Studies</button>
+                <button class="filter-btn">Video</button>
+                <button class="filter-btn">Book Chapters</button>
+                <button class="filter-btn">Articles</button>
+            </div>
+            
+            <div class="stories-grid">
+                <!-- Story Card 1 -->
+                <div class="story-card">
+                    <div class="story-thumbnail">📊</div>
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-tag">Signal</span>
+                            <span>Jan 2025</span>
+                        </div>
+                        <h3>SAP S/4HANA Migration Crisis</h3>
+                        <p>Three European CFOs navigate the 2027 deadline: brownfield, greenfield, and bluefield strategies under pressure.</p>
+                    </div>
+                </div>
+                
+                <!-- Story Card 2 -->
+                <div class="story-card">
+                    <div class="story-thumbnail">🎥</div>
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-tag">Video</span>
+                            <span>Dec 2024</span>
+                        </div>
+                        <h3>AI in Finance: Reality Check</h3>
+                        <p>A 12-minute breakdown of what's actually implementable vs. what's vendor theatre.</p>
+                    </div>
+                </div>
+                
+                <!-- Story Card 3 -->
+                <div class="story-card">
+                    <div class="story-thumbnail">📖</div>
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-tag">Book Chapter</span>
+                            <span>Nov 2024</span>
+                        </div>
+                        <h3>The Dutch Angle</h3>
+                        <p>Why European finance transformation differs from US playbooks: polder politics meets platform strategy.</p>
+                    </div>
+                </div>
+                
+                <!-- Story Card 4 -->
+                <div class="story-card">
+                    <div class="story-thumbnail">⚡</div>
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-tag">Case Study</span>
+                            <span>Oct 2024</span>
+                        </div>
+                        <h3>Multi-Vendor Alignment</h3>
+                        <p>How a €4bn manufacturer coordinated three SIs and two BPOs around one delivery rhythm.</p>
+                    </div>
+                </div>
+                
+                <!-- Story Card 5 -->
+                <div class="story-card">
+                    <div class="story-thumbnail">📡</div>
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-tag">Signal</span>
+                            <span>Sep 2024</span>
+                        </div>
+                        <h3>Platform Economics Shift</h3>
+                        <p>Why the "best-of-breed vs. suite" debate misses the point: it's about switching costs.</p>
+                    </div>
+                </div>
+                
+                <!-- Story Card 6 -->
+                <div class="story-card">
+                    <div class="story-thumbnail">🎬</div>
+                    <div class="story-content">
+                        <div class="story-meta">
+                            <span class="story-tag">Video</span>
+                            <span>Aug 2024</span>
+                        </div>
+                        <h3>GBS Operating Model Design</h3>
+                        <p>A walkthrough of how to structure finance shared services that actually reduce cost.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="knowledge.html" class="btn btn-primary">Browse Full Knowledge Engine →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who We Are Section - White -->
+    <section id="who-we-are" class="who-we-are">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ralph Geertsema</h2>
+                <p>Pattern recognition from 27 years across every seat at the table</p>
+            </div>
+            
+            <div class="who-content">
+                <img src="ralph-geertsema.jpg" alt="Ralph Geertsema" class="ralph-photo">
+                
+                <div class="who-text">
+                    <h3>Why it works.</h3>
+                    <p>Ralph has lived every side of the table: corporate leader, program director, Big 4 partner, BPO partner, system integrator. He understands how each side thinks, protects margin, and moves under pressure – and how to turn that mix into traction instead of friction.</p>
+                    
+                    <p>After 27 years, you develop an instinct for what drives failure or traction inside big systems and the people who run them. That pattern recognition is what clients pay for – not process templates.</p>
+                    
+                    <p style="font-style: italic; color: #033042; font-size: 1.1rem; margin-top: 2rem;">"I don't do transformation theatre. I help serious people make complex things work."</p>
+                    
+                    <div class="who-highlights">
+                        <h4>Background</h4>
+                        <ul>
+                            <li>Partner at Tata Consultancy Services (Finance Transformation & GBS)</li>
+                            <li>Executive Director at EY</li>
+                            <li>Program Director at LeasePlan (SAP S/4HANA)</li>
+                            <li>Head of Finance Transformation at BT Group</li>
+                        </ul>
+                        
+                        <h4 style="margin-top: 2rem;">What he brings</h4>
+                        <ul>
+                            <li>Pattern recognition across 27 years</li>
+                            <li>Multi-sided experience (corporate, Big 4, BPO, SI)</li>
+                            <li>European finance transformation expertise</li>
+                            <li>Calm authority and hard-earned realism</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section - Dark Teal -->
+    <section id="contact" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Start a real conversation.</h2>
+                <p style="margin-top: 2rem; font-size: 1.1rem;">
+                    <strong>Email:</strong> ralph.geertsema@71consulting.nl<br>
+                    <strong>Phone:</strong> +31 6 136 79 882<br>
+                    <strong>Location:</strong> Amsterdam / Huizen, Netherlands
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <p style="font-size: 0.875rem;">© 71 Consulting</p>
+                    <p style="font-size: 0.875rem; margin-top: 0.25rem; color: #94a3b8;">
+                        Finance transformation. Delivered with eyes open.
+                    </p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="#privacy">Privacy</a></li>
+                    <li><a href="#terms">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Story filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Add actual filtering logic when you have more stories
+            });
+        });
+        
+        // Nav scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
