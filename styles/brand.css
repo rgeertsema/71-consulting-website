@@ -1,0 +1,249 @@
+/* ============================================
+   71 CONSULTING - BRAND STYLES
+   Master stylesheet for all 71 Consulting properties
+   Version: 1.0
+   Executive brutalism × Swedish modern aesthetic
+   ============================================ */
+
+:root {
+  /* Brand Colors */
+  --71-dark-teal: #02161D;
+  --71-muted-blue: #052938;
+  --71-card-bg-light: #eef0f2;
+  --71-card-bg-dark: #e2e6e9;
+  --71-bg-soft: #f9fafb;
+  --71-highlight: #B2A9A0;      /* Taupe Clay */
+  --71-text-dark: #2C2C2C;      /* Carbon Black */
+  --71-text-muted: #718096;
+  --71-border: #D1CCC4;         /* Cloud Grey */
+  --71-white: #ffffff;
+  --71-error: #e53e3e;
+  
+  /* Spacing */
+  --71-spacing-xs: 0.5rem;
+  --71-spacing-sm: 1rem;
+  --71-spacing-md: 1.5rem;
+  --71-spacing-lg: 2rem;
+  --71-spacing-xl: 3rem;
+  
+  /* Border Radius */
+  --71-radius-sm: 8px;
+  --71-radius-md: 12px;
+  --71-radius-lg: 16px;
+  
+  /* Typography */
+  --71-font-family: 'Inter', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --71-font-size-sm: 0.9rem;
+  --71-font-size-base: 1rem;
+  --71-font-size-lg: 1.1rem;
+  --71-font-size-xl: 1.5rem;
+  --71-font-size-2xl: 2rem;
+  --71-font-size-3xl: 2.5rem;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--71-font-family);
+  color: var(--71-text-dark);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--71-text-dark);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 { font-size: var(--71-font-size-3xl); }
+h2 { font-size: var(--71-font-size-2xl); }
+h3 { font-size: var(--71-font-size-xl); }
+
+p {
+  color: var(--71-text-muted);
+  line-height: 1.6;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn-71-primary {
+  background: linear-gradient(135deg, var(--71-muted-blue), var(--71-dark-teal));
+  color: var(--71-white);
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: var(--71-radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--71-font-size-base);
+  transition: all 0.3s ease;
+  font-family: var(--71-font-family);
+}
+
+.btn-71-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(2, 22, 29, 0.3);
+}
+
+.btn-71-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-71-secondary {
+  background: var(--71-white);
+  color: var(--71-muted-blue);
+  border: 2px solid var(--71-muted-blue);
+  padding: 1rem 2rem;
+  border-radius: var(--71-radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--71-font-size-base);
+  transition: all 0.3s ease;
+  font-family: var(--71-font-family);
+}
+
+.btn-71-secondary:hover:not(:disabled) {
+  background: var(--71-bg-soft);
+  color: var(--71-dark-teal);
+  border-color: var(--71-dark-teal);
+}
+
+.btn-71-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   CARDS
+   ============================================ */
+
+.card-71 {
+  background: var(--71-white);
+  padding: var(--71-spacing-xl);
+  border-radius: var(--71-radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-71-elevated {
+  background: var(--71-white);
+  padding: var(--71-spacing-xl);
+  border-radius: var(--71-radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   FORMS
+   ============================================ */
+
+.form-group-71 {
+  margin-bottom: var(--71-spacing-md);
+}
+
+.form-group-71 label {
+  display: block;
+  font-weight: 600;
+  color: var(--71-text-dark);
+  margin-bottom: var(--71-spacing-xs);
+  font-size: var(--71-font-size-sm);
+}
+
+.input-71 {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--71-card-bg-dark);
+  border-radius: var(--71-radius-sm);
+  font-size: var(--71-font-size-base);
+  font-family: var(--71-font-family);
+  transition: all 0.2s ease;
+  background: var(--71-white);
+  color: var(--71-text-dark);
+}
+
+.input-71:focus {
+  outline: none;
+  border-color: var(--71-muted-blue);
+  box-shadow: 0 0 0 3px rgba(5, 41, 56, 0.2);
+}
+
+.input-71::placeholder {
+  color: var(--71-text-muted);
+}
+
+/* ============================================
+   BACKGROUNDS
+   ============================================ */
+
+.bg-71-gradient {
+  background: linear-gradient(135deg, var(--71-muted-blue), var(--71-dark-teal));
+}
+
+.bg-71-light {
+  background: var(--71-bg-soft);
+}
+
+.bg-71-white {
+  background: var(--71-white);
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-71-dark { color: var(--71-text-dark); }
+.text-71-muted { color: var(--71-text-muted); }
+.text-71-highlight { color: var(--71-highlight); }
+
+.container-71 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--71-spacing-lg);
+}
+
+.container-71-narrow {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--71-spacing-lg);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --71-spacing-lg: 1.5rem;
+    --71-spacing-xl: 2rem;
+    --71-font-size-3xl: 2rem;
+    --71-font-size-2xl: 1.5rem;
+  }
+  
+  .container-71,
+  .container-71-narrow {
+    padding: 0 var(--71-spacing-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --71-spacing-lg: 1rem;
+    --71-spacing-xl: 1.5rem;
+    --71-font-size-3xl: 1.75rem;
+    --71-font-size-2xl: 1.25rem;
+  }
+}
