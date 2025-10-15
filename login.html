@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - 71 Consulting Knowledge Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 min-h-screen flex items-center justify-center">
+    
+    <div class="max-w-md w-full mx-4">
+        <!-- Card -->
+        <div class="bg-white rounded-2xl shadow-2xl p-8">
+            
+            <!-- Logo/Header -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">71 Consulting Knowledge Engine</h1>
+                <p class="text-gray-600">Sign in to access curated signals</p>
+            </div>
+
+            <!-- Sign In Button -->
+            <button 
+                id="googleSignIn"
+                class="w-full bg-white border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 hover:border-gray-400 transition-all flex items-center justify-center gap-3 mb-6"
+            >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M19.8055 10.2292C19.8055 9.55633 19.75 8.88092 19.6336 8.21875H10.2002V11.9642H15.6014C15.3773 13.1658 14.6571 14.2108 13.6237 14.8583V17.2067H16.8341C18.7179 15.4767 19.8055 12.9892 19.8055 10.2292Z" fill="#4285F4"/>
+                    <path d="M10.2002 19.4981C12.6485 19.4981 14.7076 18.6904 16.8368 17.2065L13.6265 14.8581C12.7433 15.4137 11.5935 15.732 10.2029 15.732C7.84282 15.732 5.84042 13.9845 5.06922 11.7212H1.76562V14.1419C3.92082 18.4257 6.92683 19.4981 10.2002 19.4981Z" fill="#34A853"/>
+                    <path d="M5.06656 11.7215C4.65169 10.5199 4.65169 9.22486 5.06656 8.02319V5.60254H1.76563C0.432027 8.27108 0.432027 11.4731 1.76563 14.1417L5.06656 11.7215Z" fill="#FBBC04"/>
+                    <path d="M10.2002 4.01302C11.6648 3.99003 13.0779 4.55028 14.1279 5.56278L16.9835 2.70703C14.6102 0.456527 11.4562 -0.736895 8.2002 -0.501895C6.92683 -0.501895 3.92082 0.570527 1.76562 4.85428L5.06656 7.27493C5.83509 4.90877 7.84016 4.01302 10.2002 4.01302Z" fill="#EA4335"/>
+                </svg>
+                Sign in with Google
+            </button>
+
+            <!-- Divider -->
+            <div class="relative mb-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-4 bg-white text-gray-500">or</span>
+                </div>
+            </div>
+
+            <!-- Back to home -->
+            <a href="index.html" class="block text-center text-gray-600 hover:text-gray-900 transition-colors">
+                ← Back to homepage
+            </a>
+
+            <!-- Info Box -->
+            <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                <h3 class="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                    <span>🔒</span> Members Only Access
+                </h3>
+                <p class="text-sm text-gray-700">
+                    The Knowledge Engine contains 520+ curated signals on platform strategy, 
+                    AI governance, and European finance leadership. Access is restricted to authorized members.
+                </p>
+            </div>
+        </div>
+
+        <!-- Loading Indicator (hidden by default) -->
+        <div id="loading" class="hidden mt-6 text-center">
+            <div class="animate-pulse text-white">
+                <p>Signing you in...</p>
+            </div>
+        </div>
+
+        <!-- Error Message (hidden by default) -->
+        <div id="error" class="hidden mt-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg">
+            <p class="font-bold">Sign in failed</p>
+            <p class="text-sm">Please try again or contact support if the problem persists.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+        // ===== YOUR SUPABASE CREDENTIALS =====
+        const SUPABASE_URL = 'https://hgvntxgsoqzqskpkpecs.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhndm50eGdzb3F6cXNrcGtwZWNzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU5NDEzMDYsImV4cCI6MjA3MTUxNzMwNn0.B42Y3oHm1oDaC39lcnXISvIMBvNQJPUkKIxCF-XIq0M';
+        // ====================================
+
+        const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Check if user is already logged in
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                // User is already logged in, redirect to knowledge engine
+                window.location.href = 'knowledge.html';
+            }
+        };
+
+        // Handle Google Sign In
+        const signInWithGoogle = async () => {
+            try {
+                document.getElementById('loading').classList.remove('hidden');
+                document.getElementById('error').classList.add('hidden');
+
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                    provider: 'google',
+                    options: {
+                        redirectTo: window.location.origin + '/knowledge.html'
+                    }
+                });
+
+                if (error) throw error;
+
+                // OAuth will redirect automatically, but show loading state
+            } catch (error) {
+                console.error('Error signing in:', error);
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+            }
+        };
+
+        // Event Listeners
+        document.getElementById('googleSignIn').addEventListener('click', signInWithGoogle);
+
+        // Check session on page load
+        checkSession();
+
+        // Handle redirect after OAuth (if user is coming back from Google)
+        window.addEventListener('load', async () => {
+            // Check for OAuth redirect with hash
+            if (window.location.hash) {
+                document.getElementById('loading').classList.remove('hidden');
+                
+                // Supabase will handle the session automatically
+                const { data: { session }, error } = await supabase.auth.getSession();
+                
+                if (session) {
+                    // Success! Redirect to knowledge engine
+                    window.location.href = 'knowledge.html';
+                } else if (error) {
+                    console.error('OAuth error:', error);
+                    document.getElementById('loading').classList.add('hidden');
+                    document.getElementById('error').classList.remove('hidden');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
